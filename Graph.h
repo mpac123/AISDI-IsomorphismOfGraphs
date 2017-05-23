@@ -5,7 +5,6 @@
 #include <vector>
 #include <algorithm>
 
-int* permutationTab;
 
 class Graph
 {
@@ -24,6 +23,11 @@ public:
 		int a,b;
 		while (file >> a >> b)
 		{
+			if(a>v || b>v)
+			{
+				std::cout << "ignoruje krawedz " << a << " " << b << std::endl;
+				continue;
+			}
 			verteces[a].push_back(b);
 			if( a != b )
 				verteces[b].push_back(a);
@@ -51,6 +55,7 @@ private:
 
 class Isomorphism
 {
+
 	typedef int value_type; 
 	/*struct Compare {
         Compare(const Isomorphism& c) : Isomorphism(c) {}
@@ -61,6 +66,8 @@ class Isomorphism
         Isomorphism& Isomorphism;
     };*/
 public:
+	static int* permutationTab;
+	
 	Graph firstGraph;
 	Graph secondGraph;
 	Isomorphism(char* f, char* s) : firstGraph(f), secondGraph(s)
@@ -138,6 +145,8 @@ public:
 
 	}
 };
+
+
 
 
 #endif //GRAPH_H

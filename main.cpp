@@ -4,6 +4,8 @@
 #include <algorithm>
 #include "Graph.h"
 
+int * Isomorphism::permutationTab = NULL;
+
 int main(int argc, char **argv)
 {
     if (argc != 3)
@@ -15,9 +17,9 @@ int main(int argc, char **argv)
     Graph secondGraph(argv[2]);
     Isomorphism iso(argv[1], argv[2]);
     
-    permutationTab = new int[firstGraph.v];
+    Isomorphism::permutationTab = new int[firstGraph.v];
 		for(int i=0; i<firstGraph.v; i++)
-			permutationTab[i]=i;
+			Isomorphism::permutationTab[i]=i;
 
         
         
@@ -25,13 +27,13 @@ int main(int argc, char **argv)
     {
         std::cout << "Izomorficzne\n";
         for(int i=0; i<iso.firstGraph.v; i++)
-            std::cout << i << " --> " << permutationTab[i] << "\n";
+            std::cout << i << " --> " << Isomorphism::permutationTab[i] << "\n";
     }
 
     else
         std::cout << "Nieizomorficzne\n";
 
-	delete[] permutationTab;
+	delete[] Isomorphism::permutationTab;
 
 
 
